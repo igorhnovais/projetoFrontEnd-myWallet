@@ -1,23 +1,14 @@
 import styled from "styled-components";
 
-export const Nav = styled.nav`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    padding-bottom: 150px;
-`
-
-export const SectionImg = styled.section`
-    margin-top: 100px;
+export const H1 = styled.h1`
     display: flex;
     justify-content: center;
-    & img{
-        width: 250px;
-    }
-`
+    margin: 20px;
+    font-family: Raleway;
+    font-weight: 700;
+    font-size: 40px;
+    color: white;
+` 
 
 export const DivInput = styled.div`
     display: flex;
@@ -66,17 +57,5 @@ export const Button = styled.button`
     :active {
     box-shadow: #422800 2px 2px 0 0;
     transform: translate(2px, 2px);
-    }
-`
-
-export const DivA = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
-    
-    & a{
-        color: white;
-        font-size: 20px;
-        font-weight: 500;
     }
 `

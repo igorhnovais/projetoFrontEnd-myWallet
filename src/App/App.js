@@ -5,6 +5,8 @@ import AuthProvider from "../Components/Auth"
 import HomePage from "../Home/HomePage"
 import HomePageCadastro from "../Home/HomePageCadastro";
 import MenuPage from "../Menu/MenuPage";
+import NewEntryPage from "../Movement/NewEntryPage";
+import NewExitPage from "../Movement/NewExitPage";
 
 export default function App(){
 
@@ -17,6 +19,8 @@ export default function App(){
                     <Route path={"/"} element={<HomePage />} />
                     <Route path={"/cadastro"} element={<HomePageCadastro/>} />
                     <Route path={"/menu"} element={<MenuPage/>} />
+                    <Route path={"/nova-entrada"} element={<NewEntryPage/>} />
+                    <Route path={"/nova-saida"} element={<NewExitPage/>} />
                 </Routes>
             </AuthProvider>
         </BrowserRouter>

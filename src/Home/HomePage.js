@@ -20,9 +20,9 @@ export default function HomePage(){
             password
         }
 
-        const promise = axios.post("https://localhost:5000", login);
+        const promise = axios.post("https://localhost:5000/participants", login);
 
-        promise.then((resp => {data(resp.data.name)}));
+        promise.then((resp => {data(resp.data.name, resp.data.token)}));
 
         promise.catch((err => {alert(err.response.data.message)}));
     }

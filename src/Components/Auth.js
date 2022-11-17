@@ -10,10 +10,11 @@ function AuthProvider({children}){
     
     let navigate = useNavigate();
 
-    function data(name){
+    function data(name, token){
         
         setUser({
-            name
+            name,
+            token
         })
         
         navigate("/menu");

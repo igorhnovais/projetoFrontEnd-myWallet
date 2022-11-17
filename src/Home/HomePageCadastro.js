@@ -16,22 +16,19 @@ export default function HomePageCadastro(){
 
     function signUp(){
 
-        if(password === confirmPassword){
-            const registration = {
-                name,
-                email,
-                password
-            }
+        
+        const registration = {
+            name,
+            email,
+            password,
+            confirmPassword
+        }
+        
+        const promise = axios.post("https://localhost:5000/sign-up", registration);
 
-            const promise = axios.post("https://localhost:5000/participants", registration);
+        promise.then((resp => {alert('Parabéns por ter criado sua conta'); navigate("/")}));
 
-            promise.then((resp => {alert('Parabéns por ter criado sua conta'); navigate("/")}));
-
-            promise.catch((err) => {alert(err.response.data.message)});
-
-        } else {
-            alert("digite a mesma senha");
-        }        
+        promise.catch((err) => {alert(err.response.data.message)});        
     }
 
     return (

@@ -14,21 +14,23 @@ export default function HomePageCadastro(){
     const [name, setName] = useState("");
     let navigate = useNavigate();
 
-    function signUp(){
+    function signUp(event){
 
-        
+        event.preventDefault();
+
         const registration = {
             name,
             email,
             password,
             confirmPassword
-        }
+        }  
         
-        const promise = axios.post("https://localhost:5000/sign-up", registration);
+        const promise = axios.post("http://localhost:5000/sign-up", registration);
 
         promise.then((resp => {alert('Parabéns por ter criado sua conta'); navigate("/")}));
 
-        promise.catch((err) => {alert(err.response.data.message)});        
+        promise.catch((err) => {alert(err.response.data[0])});        
+    
     }
 
     return (
@@ -40,11 +42,11 @@ export default function HomePageCadastro(){
 
             <form onSubmit={signUp}>
                 <DivInput>
-                    <input  placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} ></input>
-                    <input  placeholder="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-                    <input  placeholder="Senha" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input> 
-                    <input placeholder="Confirme a senha" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
-                    <Button type="submit"> "Cadastrar"</Button>
+                    <input  placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} required></input>
+                    <input  placeholder="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
+                    <input  placeholder="Senha" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required></input> 
+                    <input placeholder="Confirme a senha" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required></input>
+                    <Button type="submit"> Cadastrar</Button>
                 </DivInput>
             </form>
 

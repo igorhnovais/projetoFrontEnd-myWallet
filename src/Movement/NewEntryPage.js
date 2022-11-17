@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+//import axios from "axios";
 
 import { H1, DivInput, Button } from "../Movement/styled"
 export default function NewEntrypage(){
+
+    
+
     return (
         <>
             <H1> Nova entrada</H1>

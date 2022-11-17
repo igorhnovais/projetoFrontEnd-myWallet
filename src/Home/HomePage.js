@@ -1,28 +1,35 @@
 import { Link } from "react-router-dom"
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 import Logo from "../assets/MyWallet.png";
 import {Nav, SectionImg, DivInput, DivA, Button} from "./styled";
-import {AuthContext} from "../Components/Auth";
+//import {AuthContext} from "../Components/Auth";
 
 export default function HomePage(){
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    let navigate = useNavigate();
 
-    const {data} = useContext(AuthContext);
+    //const {data} = useContext(AuthContext);
 
-    function signIn(){
+    function signIn(event){
+
+
+        event.preventDefault();
+
 
         const login = {
             email,
             password
         }
 
-        const promise = axios.post("https://localhost:5000/participants", login);
+        const promise = axios.post("http://localhost:5000/sign-in", login);
 
-        promise.then((resp => {data(resp.data.name, resp.data.token)}));
+        promise.then((resp => {console.log(resp.data); navigate("/menu"); alert('entrou')}));
+
 
         promise.catch((err => {alert(err.response.data.message)}));
     }
@@ -34,13 +41,11 @@ export default function HomePage(){
                     <img src={Logo} alt="Logo My Wallet"/>
                 </SectionImg>
 
-                <form>
-                    <DivInput onSubmit={signIn}>
-                        <input placeholder="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
-                        <input placeholder="Senha" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-                        <Link to="/menu">
-                            <Button> "Entrar" </Button>
-                        </Link>
+                <form onSubmit={signIn}>
+                    <DivInput >
+                        <input placeholder="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
+                        <input placeholder="Senha" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required></input>
+                        <Button type="submit"> Entrar </Button>
                     </DivInput>
                 </form>
 

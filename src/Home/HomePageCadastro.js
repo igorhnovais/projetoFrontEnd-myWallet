@@ -16,17 +16,22 @@ export default function HomePageCadastro(){
 
     function signUp(){
 
-        const registration = {
-            name,
-            email,
-            password
-        }
+        if(password === confirmPassword){
+            const registration = {
+                name,
+                email,
+                password
+            }
 
-        const promise = axios.post("https://localhost:5000/participants", registration);
+            const promise = axios.post("https://localhost:5000/participants", registration);
 
-        promise.then((resp => {alert('Parabéns por ter criado sua conta'); navigate("/")}));
+            promise.then((resp => {alert('Parabéns por ter criado sua conta'); navigate("/")}));
 
-        promise.catch((err) => {alert(err.response.data.message)});
+            promise.catch((err) => {alert(err.response.data.message)});
+
+        } else {
+            alert("digite a mesma senha");
+        }        
     }
 
     return (
@@ -38,10 +43,10 @@ export default function HomePageCadastro(){
 
             <form onSubmit={signUp}>
                 <DivInput>
-                    <input  placeholder="Nome" type="text" value={name} ></input>
-                    <input  placeholder="E-mail" type="email" value={email}></input>
-                    <input  placeholder="Senha" type="password" value={password}></input> 
-                    <input placeholder="Confirme a senha" type="password" value={confirmPassword}></input>
+                    <input  placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} ></input>
+                    <input  placeholder="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                    <input  placeholder="Senha" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input> 
+                    <input placeholder="Confirme a senha" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
                     <Button type="submit"> "Cadastrar"</Button>
                 </DivInput>
             </form>

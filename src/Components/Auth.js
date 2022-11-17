@@ -7,21 +7,20 @@ function AuthProvider({children}){
 
     const [user, setUser] = useState("");
     const [update, setUpdate] = useState([]);
-    const [porcentage, setPorcentage] = useState(0);
+    
     let navigate = useNavigate();
 
-    function data(token, image){
+    function data(name){
         
         setUser({
-            token: token,
-            image: image
+            name
         })
         
-        navigate("/hoje");
+        navigate("/menu");
     }
 
     return (
-        <AuthContext.Provider value={{data, user, update, setUpdate, porcentage, setPorcentage}}>
+        <AuthContext.Provider value={{data, user, update, setUpdate}}>
             {children}
         </AuthContext.Provider>
         

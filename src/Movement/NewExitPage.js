@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 
 import { H1, DivInput, Button } from "../Movement/styled";
 import { AuthContext } from "../Components/Auth";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 export default function NewExitPage(){
@@ -10,7 +11,8 @@ export default function NewExitPage(){
     const [value, setValue] = useState(0);
     const [description, setDescription] = useState("");
 
-    const {user} = useContext(AuthContext);
+    const {token} = useContext(AuthContext);
+    let navigate = useNavigate()
 
     function newExit (event){
 
@@ -24,13 +26,13 @@ export default function NewExitPage(){
 
         const config = {
             headers: {
-                Authorization: `Bearer ${user.token}`
+                Authorization: `Bearer ${token}`
             }
         }
 
         const promise = axios.post("http://localhost:5000/new-exit", exit, config);
 
-        promise.then((resp) => {alert("Nova entrada adicionada")});
+        promise.then((resp) => {alert("Nova saida adicionada"); navigate("/menu")});
 
         promise.catch((err) => {alert(err.response.data)});
     }
@@ -41,7 +43,7 @@ export default function NewExitPage(){
 
             <form onSubmit={newExit}>
                 <DivInput>
-                    <input placeholder="Valor" type="text" value={value} onChange={(e) => setValue(e.target.value)} required ></input>
+                    <input placeholder="Valor" type="number" value={value} onChange={(e) => setValue(e.target.value)} required ></input>
                     <input placeholder="Descrição" type="text" value={description} onChange={(e) => setDescription(e.target.value)} required></input>
                     <Button> Salvar saída </Button>
                 </DivInput>

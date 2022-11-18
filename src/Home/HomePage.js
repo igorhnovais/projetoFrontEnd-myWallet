@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import Logo from "../assets/MyWallet.png";
 import {Nav, SectionImg, DivInput, DivA, Button} from "./styled";
-    import {AuthContext} from "../Components/Auth";
+import {AuthContext} from "../Components/Auth";
 
 export default function HomePage(){
 
@@ -13,7 +13,7 @@ export default function HomePage(){
     const [password, setPassword] = useState("");
     let navigate = useNavigate();
 
-    const {data} = useContext(AuthContext);
+    const {setToken} = useContext(AuthContext);
 
     function signIn(event){
 
@@ -28,7 +28,7 @@ export default function HomePage(){
 
         const promise = axios.post("http://localhost:5000/sign-in", login);
 
-        promise.then((resp => {data(resp.data.token); console.log(resp.data); navigate("/menu"); alert('entrou')}));
+        promise.then((resp => {setToken(resp.data); navigate("/menu"); alert('entrou')}));
 
 
         promise.catch((err => {alert(err.response.data.message)}));

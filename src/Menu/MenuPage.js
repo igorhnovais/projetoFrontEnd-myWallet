@@ -1,9 +1,47 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext} from "react";
+
+import {AuthContext} from "../Components/Auth";
+import TransactionList from "./TransactionsList";
 
 import Saida from "../assets/Vector(1).png";
 
+
+
+
+
 export default function MenuPage(){
+
+    const {token} = useContext(AuthContext);
+    let navigate = useNavigate();
+
+    const [transactions, setTransactions] = useState([]);
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    useEffect(() => {
+
+        const promise = axios.get("http://localhost:5000/transactions", config)
+
+        promise.then(catchTransactions)
+
+        promise.catch(err => {alert("Seu tempo expirou!"); navigate("/"); window.location.reload()});
+
+        function catchTransactions(resp){
+
+            setTransactions(resp.data);
+            console.log(resp);
+        }
+    }, []);
+    
+
     return (
         <>
             <SectionName>
@@ -14,7 +52,14 @@ export default function MenuPage(){
             </SectionName>
 
             <SectionRegister>
-                <p> não há registros de entrada ou saida</p>
+                {(transactions === 0 )
+                        ? 
+                        (<p> não há registros de entrada ou saida</p>)
+                        :
+                        (<div> 
+                            {transactions.map((item, i) =>  <TransactionList item={item} key={i}/>)}                       
+                        </div>)
+                }
             </SectionRegister>
 
             <SectionEntryExit>

@@ -34,6 +34,7 @@ export default function NewExitPage(){
 
         promise.catch((err) => {alert(err.response.data)});
     }
+    
     return (
         <>
             <H1> Nova saída</H1>

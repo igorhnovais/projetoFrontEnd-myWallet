@@ -8,7 +8,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 export default function NewExitPage(){
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
 
     const {token} = useContext(AuthContext);

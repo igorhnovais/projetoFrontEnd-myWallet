@@ -22,13 +22,14 @@ export default function TransactionList({item}){
 const Div = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 100vh;
-    margin: 20px;
+    width: 100%;
+    margin-top: 20px;
     font-size: 30px;
     & div{
         display: flex;
     }
 `
+
 const H5day = styled.h5`
     color: #C6C6C6;
     font-family: 'Raleway';

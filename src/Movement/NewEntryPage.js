@@ -9,7 +9,7 @@ import { AuthContext } from "../Components/Auth";
 
 export default function NewEntrypage(){
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
 
     const {token} = useContext(AuthContext);

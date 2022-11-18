@@ -10,15 +10,13 @@ import TransactionList from "./TransactionsList";
 import Saida from "../assets/Vector(1).png";
 
 
-
-
-
 export default function MenuPage(){
 
     const {token} = useContext(AuthContext);
     let navigate = useNavigate();
 
     const [transactions, setTransactions] = useState([]);
+    const [user, setUser] = useState([]);
 
     const config = {
         headers: {
@@ -36,29 +34,30 @@ export default function MenuPage(){
 
         function catchTransactions(resp){
 
-            setTransactions(resp.data);
-            console.log(resp);
+            setTransactions(resp.data.transactions);
+            setUser(resp.data.user);
         }
+        
     }, []);
-    
+
 
     return (
         <>
             <SectionName>
-                <h1> Ola, Fulano</h1>
+                <h1> Ola, {user}</h1>
                 <Link to="/">
                     <img src={Saida} alt="sair"/>
                 </Link>
             </SectionName>
 
             <SectionRegister>
-                {(transactions === 0 )
-                        ? 
-                        (<p> não há registros de entrada ou saida</p>)
-                        :
-                        (<div> 
-                            {transactions.map((item, i) =>  <TransactionList item={item} key={i}/>)}                       
-                        </div>)
+                {(transactions?.length === 0 )
+                    ? 
+                    (<p> não há registros de entrada ou saida</p>)
+                    :
+                    (<div> 
+                        {transactions?.map((item, i) =>  <TransactionList item={item}  key={i}/>)}                       
+                    </div>)
                 }
             </SectionRegister>
 

@@ -3,12 +3,7 @@ import styled from "styled-components";
 export default function TransactionList({item}){
 
     let color = item.type;
-    let arr = [];
-    const itemInverted = item.reverse()
-
-    for(let i = 0; i < itemInverted; i++){
-
-    }
+    
     
     return (
         <>

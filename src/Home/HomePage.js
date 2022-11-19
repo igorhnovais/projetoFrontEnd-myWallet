@@ -3,7 +3,6 @@ import axios from "axios";
 import { useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
-import Logo from "../assets/MyWallet.png";
 import {Nav, SectionImg, DivInput, DivA, Button} from "./styled";
 import {AuthContext} from "../Components/Auth";
 
@@ -38,7 +37,7 @@ export default function HomePage(){
         <>
             <Nav>
                 <SectionImg>
-                    <img src={Logo} alt="Logo My Wallet"/>
+                    <h1> MyWallet </h1>
                 </SectionImg>
 
                 <form onSubmit={signIn}>

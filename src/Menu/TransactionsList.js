@@ -13,7 +13,7 @@ export default function TransactionList({item}){
                     <H5description> {item.description} </H5description>
                 </div>
                 
-                <H5value color={color} > {item.value} </H5value>
+                <H5value color={color} > {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.value)} </H5value>
             </Div>
         </>
     )
@@ -24,9 +24,13 @@ const Div = styled.div`
     justify-content: space-between;
     width: 100%;
     margin-top: 20px;
+    margin-right: 20px;
     font-size: 30px;
     & div{
         display: flex;
+    }
+    @media (max-width: 540px) {
+        font-size: 20px;
     }
 `
 

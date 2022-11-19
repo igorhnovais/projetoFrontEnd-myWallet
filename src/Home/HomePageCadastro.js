@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import Logo from "../assets/MyWallet.png"
 import {Nav, SectionImg, DivInput, DivA, Button} from "./styled";
 
 export default function HomePageCadastro(){
@@ -37,7 +36,7 @@ export default function HomePageCadastro(){
         <>
         <Nav>
             <SectionImg>
-                <img src={Logo} alt="Logo do MyWallet"/>
+                <h1> MyWallet </h1>
             </SectionImg>
 
             <form onSubmit={signUp}>

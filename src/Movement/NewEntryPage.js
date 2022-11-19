@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { H1, DivInput, Button } from "../Movement/styled";
+import { Nav, H1, DivInput, Button } from "../Movement/styled";
 import { AuthContext } from "../Components/Auth";
 
 
@@ -40,15 +40,17 @@ export default function NewEntrypage(){
 
     return (
         <>
-            <H1> Nova entrada</H1>
+            <Nav>
+                <H1> Nova entrada</H1>
 
-            <form onSubmit={newEntry}>
-                <DivInput>
-                    <input placeholder="Valor" type="number" value={value} onChange={(e) => setValue(e.target.value)} required></input>
-                    <input placeholder="Descrição" type="text" value={description} onChange={(e) => setDescription(e.target.value)} required></input>              
-                    <Button type="submit"> Salvar entrada </Button>
-                </DivInput>
-            </form>
+                <form onSubmit={newEntry}>
+                    <DivInput>
+                        <input placeholder="Valor" type="number" value={value} onChange={(e) => setValue(e.target.value)} required></input>
+                        <input placeholder="Descrição" type="text" value={description} onChange={(e) => setDescription(e.target.value)} required></input>              
+                        <Button type="submit"> Salvar entrada </Button>
+                    </DivInput>
+                </form>
+            </Nav>
         </>
         
     )

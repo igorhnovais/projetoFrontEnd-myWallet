@@ -56,57 +56,63 @@ export default function MenuPage(){
 
         sum.toFixed(2);
 
-        setBalance(sum);
-        
+        setBalance(sum);  
     }
 
     
-
     return (
         <>
-            <SectionName>
-                <h1> Ola, {user}</h1>
-                <Link to="/">
-                    <img src={Saida} alt="sair"/>
-                </Link>
-            </SectionName>
-
-            <SectionRegister>
-                <DivTransaction>
-                    {(transactions?.length === 0 )
-                        ? 
-                        (<p> não há registros de entrada ou saida</p>)
-                        :
-                        (<div> 
-                            {transactions?.map((item, i) =>  <TransactionList item={item}  key={i}/>)}                       
-                        </div>)
-                    }
-                </DivTransaction>
-
-                <DivBalance color={balance}>
-                    <h1> SALDO </h1>
-                    <h2 >{balance} </h2>
-                </DivBalance>
-            </SectionRegister>
-
-            <SectionEntryExit>
-                <Div>
-                    <Link to="/nova-entrada">
-                        <h2> + </h2>
-                        <h3> Nova entrada</h3>
+            <Nav>
+                <SectionName>
+                    <h1> Ola, {user}</h1>
+                    <Link to="/">
+                        <Img src={Saida} alt="sair"/>
                     </Link>
-                </Div>
+                </SectionName>
 
-                <Div>
-                    <Link to="/nova-saida">
-                        <h2> - </h2>
-                        <h3> Nova saída</h3>
-                    </Link>
-                </Div>
-            </SectionEntryExit>
+                <SectionRegister>
+                    <DivTransaction>
+                        {(transactions?.length === 0 )
+                            ? 
+                            (<p> não há registros de entrada ou saida</p>)
+                            :
+                            (<div> 
+                                {transactions?.map((item, i) =>  <TransactionList item={item}  key={i}/>)}                       
+                            </div>)
+                        }
+                    </DivTransaction>
+
+                    <DivBalance color={balance}>
+                        <h1> SALDO </h1>
+                        <h2 >{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(balance)} </h2>
+                    </DivBalance>
+                </SectionRegister>
+
+                <SectionEntryExit>
+                    <Div>
+                        <Link to="/nova-entrada">
+                            <h2> + </h2>
+                            <h3> Nova entrada</h3>
+                        </Link>
+                    </Div>
+
+                    <Div>
+                        <Link to="/nova-saida">
+                            <h2> - </h2>
+                            <h3> Nova saída</h3>
+                        </Link>
+                    </Div>
+                </SectionEntryExit>
+            </Nav>
         </>
     )
 }
+
+const Nav = styled.nav`
+    display: flex;
+    flex-direction: column;
+    
+`
 
 const SectionName = styled.section`
     display: flex;
@@ -114,13 +120,17 @@ const SectionName = styled.section`
     margin: 20px;
     color: white;
     & h1{
-        font-size: 30px;
+        font-size: 40px;
     }
 `
 
+const Img = styled.img`
+    width: 30px;
+`
+
 const SectionRegister = styled.section`
-    width: 95%;
-    min-height: 500px;
+    //width: 97%;
+    height: 500px;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -134,19 +144,21 @@ const SectionRegister = styled.section`
 `
 
 const DivTransaction = styled.div`
-    width: 90%;
+    width: 94%;
     margin-bottom: 40px;
-    
+    overflow-y: auto;
+    word-wrap: break-word;
     & p{
         height: 450px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
 `
 
 const SectionEntryExit = styled.section`
-    display: flex;  
+    display: flex; 
 `
 
 const Div = styled.div`
@@ -157,16 +169,46 @@ const Div = styled.div`
     border-radius: 10px;
     margin: 20px;
     padding: 10px 20px;
+
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.35);
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    :active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+    }
     & h2{
-        font-size: 30px;
+        font-size: 50px;
         margin-bottom: 50px;
     }
     & h3{
-        font-size: 30px;
+        font-size: 50px;
     }
     & a{
         text-decoration: none;
         color: white;
+    }
+
+    @media (max-width: 730px) {
+        & h2{
+            font-size: 40px;
+        }
+        & h3{
+            font-size: 40px;
+        }
+    }
+
+    @media (max-width: 520px) {
+        & h2{
+            font-size: 40px;
+        }
+        & h3{
+            font-size: 35px;
+        }
     }
 `
 
@@ -184,5 +226,8 @@ const DivBalance = styled.div`
     & h2{
         color: ${props => props.color >= 0 ? "#03AC00" : "#C70000"};
         margin-right: 40px;
+    }
+    @media (max-width: 400px) {
+        font-size: 25px;
     }
 `

@@ -14,8 +14,10 @@ export const SectionImg = styled.section`
     margin-top: 100px;
     display: flex;
     justify-content: center;
-    & img{
-        width: 250px;
+    & h1{
+        color: white;
+        font-size: 70px;
+        font-family: 'Saira Stencil One';
     }
 `
 
@@ -40,7 +42,7 @@ export const DivInput = styled.div`
     & a{
         text-decoration: none;
     }
-      
+   
 `
 
 export const Button = styled.button`
@@ -55,7 +57,6 @@ export const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: ${props => props.opacityB ? 0.6 : 1};
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.35);
     border-radius: 5px;
     cursor: pointer;

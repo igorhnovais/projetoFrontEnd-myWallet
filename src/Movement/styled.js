@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const Nav = styled.nav`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding-bottom: 150px;
+`
+
 export const H1 = styled.h1`
     display: flex;
     justify-content: center;

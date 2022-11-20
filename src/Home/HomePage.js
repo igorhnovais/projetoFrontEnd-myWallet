@@ -27,7 +27,7 @@ export default function HomePage(){
 
         const promise = axios.post("http://localhost:5000/sign-in", login);
 
-        promise.then((resp => {setToken(resp.data); navigate("/menu"); alert('entrou')}));
+        promise.then((resp => {setToken(resp.data); navigate("/menu")}));
 
 
         promise.catch((err => {alert(err.response.data.message)}));

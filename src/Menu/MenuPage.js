@@ -19,13 +19,14 @@ export default function MenuPage(){
     const [user, setUser] = useState([]);
     const [balance, setBalance] = useState(0);
 
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
-
+   
     useEffect(() => {
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }    
 
         const promise = axios.get("http://localhost:5000/transactions", config)
 
@@ -40,7 +41,7 @@ export default function MenuPage(){
             soma(resp.data.transactions);
         }
 
-    }, []);
+    }, [balance, navigate, token]);
 
     function soma(resp){
         let sum = 0;
@@ -59,6 +60,26 @@ export default function MenuPage(){
         setBalance(sum);  
     }
 
+    function logOut(){
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        const promise = axios.delete("http://localhost:5000/sessions", config);
+
+        promise.then((res) => {
+            navigate("/");
+            window.location.reload();
+        })
+
+        promise.catch((err) => {
+            navigate("/");
+            window.location.reload();
+        })
+    }
     
     return (
         <>
@@ -66,7 +87,7 @@ export default function MenuPage(){
                 <SectionName>
                     <h1> Ola, {user}</h1>
                     <Link to="/">
-                        <Img src={Saida} alt="sair"/>
+                        <Img src={Saida} alt="sair" onClick={logOut}/>
                     </Link>
                 </SectionName>
 

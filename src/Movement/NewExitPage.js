@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 
 import { Nav, H1, DivInput, Button } from "../Movement/styled";
 import { AuthContext } from "../Components/Auth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function NewExitPage(){
@@ -32,7 +32,7 @@ export default function NewExitPage(){
 
         const promise = axios.post("http://localhost:5000/new-exit", exit, config);
 
-        promise.then((resp) => {alert("Nova saida adicionada"); navigate("/menu")});
+        promise.then((resp) => {navigate("/menu")});
 
         promise.catch((err) => {alert(err.response.data)});
     }

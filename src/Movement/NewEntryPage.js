@@ -33,7 +33,7 @@ export default function NewEntrypage(){
 
         const promise = axios.post("http://localhost:5000/new-entry", entry, config);
 
-        promise.then((resp) => {alert("Nova entrada adicionada"); navigate("/menu")});
+        promise.then((resp) => {navigate("/menu")});
 
         promise.catch((err) => {alert(err.response.data)});
     }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,12 +23,11 @@ export default function HomePage(){
         const login = {
             email,
             password
-        }
+        };
 
         const promise = axios.post("http://localhost:5000/sign-in", login);
 
         promise.then((resp => {setToken(resp.data); navigate("/menu")}));
-
 
         promise.catch((err => {alert(err.response.data.message)}));
     }
@@ -57,4 +56,4 @@ export default function HomePage(){
 
         </>
     )
-}
+};

@@ -5,14 +5,13 @@ export const AuthContext = createContext({});
 function AuthProvider({children}){
 
     const [token, setToken] = useState("");
-    const [balance, setBalance] = useState([]);
         
     return (
-        <AuthContext.Provider value={{setToken, token, balance, setBalance}}>
+        <AuthContext.Provider value={{setToken, token}}>
             {children}
         </AuthContext.Provider>
         
     )
-}
+};
 
 export default AuthProvider;

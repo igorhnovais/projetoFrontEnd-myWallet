@@ -4,7 +4,6 @@ export default function TransactionList({item}){
 
     let color = item.type;
     
-    
     return (
         <>
             <Div>
@@ -13,11 +12,14 @@ export default function TransactionList({item}){
                     <H5description> {item.description} </H5description>
                 </div>
                 
-                <H5value color={color} > {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.value)} </H5value>
+                <H5value color={color} > {
+                new Intl.NumberFormat('pt-BR', 
+                {style: 'currency', currency: 'BRL'})
+                .format(item.value)} </H5value>
             </Div>
         </>
     )
-}
+};
 
 const Div = styled.div`
     display: flex;

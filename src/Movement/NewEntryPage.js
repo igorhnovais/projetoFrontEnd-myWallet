@@ -23,20 +23,20 @@ export default function NewEntrypage(){
         const entry = {
             value,
             description
-        }
+        };
 
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }
+        };
 
         const promise = axios.post("http://localhost:5000/new-entry", entry, config);
 
         promise.then((resp) => {navigate("/menu")});
 
         promise.catch((err) => {alert(err.response.data)});
-    }
+    };
 
     return (
         <>
@@ -54,4 +54,4 @@ export default function NewEntrypage(){
         </>
         
     )
-}
+};

@@ -47,18 +47,20 @@ export default function MenuPage(){
         let sum = 0;
 
         for (let i = 0; i < resp.length; i++) {
-            if (resp[i].type === "exit") {
-                sum = sum - Number(resp[i].value)
-            }
-            if (resp[i].type === "entry") {
-                sum = sum + Number(resp[i].value)
-            }
-        }
 
-        sum.toFixed(2);
+            if (resp[i].type === "exit") {
+                sum = sum - Number(resp[i].value);
+            }
+
+            if (resp[i].type === "entry") {
+                sum = sum + Number(resp[i].value);
+            }
+        };
+
+        //sum.toFixed(2);
 
         setBalance(sum);  
-    }
+    };
 
     function logOut(){
 
@@ -66,20 +68,20 @@ export default function MenuPage(){
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }
+        };
 
         const promise = axios.delete("http://localhost:5000/sessions", config);
 
         promise.then((res) => {
             navigate("/");
             window.location.reload();
-        })
+        });
 
         promise.catch((err) => {
             navigate("/");
             window.location.reload();
-        })
-    }
+        });
+    };
     
     return (
         <>
@@ -112,14 +114,14 @@ export default function MenuPage(){
                 <SectionEntryExit>
                     <Div>
                         <Link to="/nova-entrada">
-                            <h2> + </h2>
+                            <ion-icon name="add-circle-outline"></ion-icon>
                             <h3> Nova entrada</h3>
                         </Link>
                     </Div>
 
                     <Div>
                         <Link to="/nova-saida">
-                            <h2> - </h2>
+                            <ion-icon name="remove-circle-outline"></ion-icon>
                             <h3> Nova saída</h3>
                         </Link>
                     </Div>
@@ -127,7 +129,7 @@ export default function MenuPage(){
             </Nav>
         </>
     )
-}
+};
 
 const Nav = styled.nav`
     display: flex;
@@ -159,6 +161,7 @@ const SectionRegister = styled.section`
     align-items: center;
     border-radius: 10px;
     margin: 20px;
+    border: 5px black solid;
     & p{
         font-size: 30px;
     } 
@@ -174,6 +177,11 @@ const DivTransaction = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    @media (max-width:380px) {
+        & p{
+            margin-left: 45px;
+        }
     }
 
 `
@@ -202,9 +210,10 @@ const Div = styled.div`
     box-shadow: #422800 2px 2px 0 0;
     transform: translate(2px, 2px);
     }
-    & h2{
+    & ion-icon{
         font-size: 50px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
+        margin-top: 15px;
     }
     & h3{
         font-size: 50px;

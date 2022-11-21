@@ -12,7 +12,7 @@ export default function NewExitPage(){
     const [description, setDescription] = useState("");
 
     const {token} = useContext(AuthContext);
-    let navigate = useNavigate()
+    let navigate = useNavigate();
 
     function newExit (event){
 
@@ -22,20 +22,20 @@ export default function NewExitPage(){
         const exit = {
             value,
             description
-        }
+        };
 
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }
+        };
 
         const promise = axios.post("http://localhost:5000/new-exit", exit, config);
 
         promise.then((resp) => {navigate("/menu")});
 
         promise.catch((err) => {alert(err.response.data)});
-    }
+    };
     
     return (
         <>
@@ -53,4 +53,4 @@ export default function NewExitPage(){
         </>
         
     )
-}
+};

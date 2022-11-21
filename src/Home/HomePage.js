@@ -29,7 +29,7 @@ export default function HomePage(){
 
         promise.then((resp => {setToken(resp.data); navigate("/menu")}));
 
-        promise.catch((err => {alert(err.response.data.message)}));
+        promise.catch((err => {alert(err.response.data)}));
     }
 
     return (

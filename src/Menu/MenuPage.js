@@ -57,8 +57,6 @@ export default function MenuPage(){
             }
         };
 
-        //sum.toFixed(2);
-
         setBalance(sum);  
     };
 

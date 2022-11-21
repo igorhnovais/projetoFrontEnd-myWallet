@@ -35,7 +35,7 @@ export default function NewEntrypage(){
 
         promise.then((resp) => {navigate("/menu")});
 
-        promise.catch((err) => {alert(err.response.data)});
+        promise.catch((err) => {alert(err.response.data.message)});
     };
 
     return (
